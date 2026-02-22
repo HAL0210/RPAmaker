@@ -1,0 +1,29 @@
+READ_LINE_INTERVAL: 0.01
+AUTO_DEFAULT_INPUT: false
+ENABLE_DEFAULT_INPUT: true
+MEASURE_INTERVAL: 0.01
+QUIT_SLEEP_TIME: 0
+
+retry :
+    max_count : 5
+    interval  : 5
+
+# セパレート文字
+# 基本的に複数個の変数等はカンマ区切りで受け渡される。
+# 例外：module_priority
+# どうしても変更したい場合のみ変えること
+sep: ','
+
+# モジュール優先度
+# カンマ区切りで優先度の高いモジュールから順に書く
+# ここに書かれたモジュール内のコマンドは'd.action'のようにモジュール名を書かずに'action'だけで実行可能
+module_priority: d,k
+
+# if分岐用
+flow_stack: []
+
+# 読み込み時の失敗で対話モードに移行するか
+auto_interactive_when_read_line_except: True
+
+# 終了時の待機
+finally_wait: 0

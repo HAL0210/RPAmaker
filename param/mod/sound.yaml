@@ -1,0 +1,5 @@
+s:
+    sound_output_file: output.wav
+    half_tone: -3.0
+    default_octave: 4
+

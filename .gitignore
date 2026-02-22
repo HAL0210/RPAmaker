@@ -1,0 +1,25 @@
+# Pythonキャッシュ
+__pycache__/
+*.pyc
+*.pyo
+
+# ビルド関連
+*.build/
+*.dist/
+*.onefile-build/
+
+# ログや出力ファイル
+log/*
+*.wav
+
+# テストや一時ファイル
+*.txt
+
+# IDE/エディタ関連ファイル（VSCodeなど）
+.vscode/
+*.code-workspace
+
+# その他
+.env
+.DS_Store
+crpa

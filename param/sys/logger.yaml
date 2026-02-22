@@ -1,0 +1,15 @@
+root_logger_name: CommandRPA
+
+fh:
+  path: ./log/trace.log
+  max_bytes: 1048576
+  backup_count: 3
+  encoding: utf-8
+  level: DEBUG
+  format: "%(asctime)s.%(msecs)03d %(levelname)s %(message)s"
+  datefmt: "%Y-%m-%d %H:%M:%S"
+
+ch:
+  level: INFO
+  format: "%(asctime)s.%(msecs)03d %(levelname)s %(message)s"
+  datefmt: "%Y/%m/%d %H:%M:%S"

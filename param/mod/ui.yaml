@@ -1,0 +1,12 @@
+ui:
+    MAX_SEARCH_COUNT : 10
+    SEARCH_INTERVAL  : 3
+    query_sep : ';'
+    timeout : 10
+    index_when_ambiguous_match: 0
+    type_interval : 0.01
+    
+    # 要素検索について
+    find_max_retry: 20
+    find_retry_interval: 0.5
+    find_index: 0

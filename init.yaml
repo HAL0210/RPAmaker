@@ -1,0 +1,12 @@
+# バージョン
+version:
+  major: '1'
+  minor: '-2'
+  patch: '0'
+
+# 読み込むparameterファイルを格納しているフォルダ
+# sys/logger.yamlとsys/option.yamlは必須
+PARAM_FOLDER: param
+
+# commandファイルを格納するデフォルトフォルダ
+COMMAND_FOLDER: command

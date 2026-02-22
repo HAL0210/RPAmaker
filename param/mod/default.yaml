@@ -1,0 +1,3 @@
+# waitコマンドのパラメータ無指定時の待機秒数
+default_wait_time: 1
+

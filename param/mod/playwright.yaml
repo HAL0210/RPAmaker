@@ -1,0 +1,38 @@
+p:
+    browser:
+        # ブラウザの実行パス(アプリ名の場合はapp_path.アプリ名が参照される)
+        executable_path: chrome
+        # Trueの場合、ヘッドレスモード(ブラウザが非表示)で実行
+        is_headless: False
+        # ダイアログをaccept(True),dismiss(False)する
+        dialog_auto_accept : True
+        # 終了時にブラウザを自動で閉じる
+        auto_close: True
+
+    # 要素検索について
+    find_max_retry: 20
+    find_retry_interval: 0.5
+    find_index: 0
+
+    # clickの方式について
+    # - 0: 通常のclick() タイムアウト5秒
+    # - 1: force=Trueでclick()
+    # - 2: JavaScriptで el.click()
+    # - 3: hoverしてからclick()
+    # - 4: 要素の中央座標を取得してクリック
+    click_method: 2
+    double_click_method: 2
+    right_click_method: 2
+
+    # p.waitでページ自体の読み込みを待機する際のstate
+    # | `"load"`             | ページ内のすべてのリソース（画像、CSSなどを含む）が読み込まれたとき |
+    # | `"domcontentloaded"` | DOMの初期構築が完了したとき（JS実行前）              |
+    # | `"networkidle"`      | 500ms以上ネットワーク接続が0になったとき（SPAなどに便利）   |
+
+    wait_state: networkidle
+
+    screenshot:
+        default_name: image.png
+        default_dir :  C:\Users\hal02\Pictures\rpa
+        scale_type  : device # device or css
+        overwrite   : False
