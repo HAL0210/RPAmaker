@@ -1,12 +1,12 @@
 import sys
 import time
 import re
-from system.paramSetting import getParam, setParam
+from lib.paramSetting import getParam, setParam
 from module.flowActions import flow_action_list
-from system.decoratorSetting import *
-from system.customException import *
-from system.commonDefine import *
-from system.loggerSetting import logger
+from lib.decoratorSetting import *
+from lib.customException import *
+from lib.commonDefine import *
+from lib.loggerSetting import logger
 
 from moduleList import module_list, getModuleActions
 

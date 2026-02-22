@@ -2,7 +2,7 @@
 
 '''
 
-from system.commonDefine import *
+from lib.commonDefine import *
 logger = getMyLogger(__name__)
 
 @instrumented()

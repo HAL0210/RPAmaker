@@ -1,4 +1,4 @@
-from system.commonDefine import *
+from lib.commonDefine import *
 
 def getConnectString(server):
     if not hasParam(f'{server}'):

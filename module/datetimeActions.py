@@ -1,9 +1,9 @@
 '''datetimeの利用(dt)
 '''
-from system.loggerSetting import getMyLogger
-from system.paramSetting  import getParam, setParam, hasParam, loadParams
-from system.shutdownSetting import register_shutdown_hook
-from system.decoratorSetting import instrumented, retryCounter
+from lib.loggerSetting import getMyLogger
+from lib.paramSetting  import getParam, setParam, hasParam, loadParams
+from lib.shutdownSetting import register_shutdown_hook
+from lib.decoratorSetting import instrumented, retryCounter
 
 # 日付評価用の関数
 from datetime import datetime, date, time, timedelta, timezone

@@ -1,7 +1,7 @@
 '''キーボード操作(k)
 '''
 from pynput.keyboard import Controller, Key
-from system.commonDefine import *
+from lib.commonDefine import *
 
 keyboard = Controller()
 loadParams('mod/keyboard.yaml')

@@ -1,7 +1,7 @@
 '''Playwrightでブラウザ操作(p)
 '''
 from playwright.sync_api import sync_playwright
-from system.commonDefine import *
+from lib.commonDefine import *
 
 p       = None
 browser = None

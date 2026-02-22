@@ -1,9 +1,9 @@
 '''既定で読み込まれる汎用コマンド(d)
 '''
 
-from system.paramSetting import showAllParams, showParam
+from lib.paramSetting import showAllParams, showParam
 import subprocess
-from system.commonDefine import *
+from lib.commonDefine import *
 
 loadParams('mod/default.yaml')
 logger = getMyLogger(__name__)

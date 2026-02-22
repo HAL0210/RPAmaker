@@ -38,7 +38,7 @@ python CommandRPA.py path\to\commands.txt
 - `moduleList.py` — 利用可能モジュールの管理
 - `module/` — 各種アクション実装（`playwrightActions.py`, `uiActions.py`, `keyboardActions.py` など）
 - `param/` — パラメータ定義（`mod/`、`sys/` 等のサブフォルダあり）
-- `system/` — ロガー、デコレータ、シャットダウン処理などの共通機能
+- `lib/` — ロガー、デコレータ、シャットダウン処理などの共通機能
 
 ## 設定（ポイント）
 - 初期設定は `init.yaml`。
@@ -47,7 +47,7 @@ python CommandRPA.py path\to\commands.txt
 
 ## 開発・拡張方法
 - 新しいアクションを追加するには `module/` にファイルを作成し、`moduleList.py` に登録してください。
-- ログや実行計測は `system/decoratorSetting.py` のデコレータを利用してください。
+- ログや実行計測は `lib/decoratorSetting.py` のデコレータを利用してください。
 
 ## 注意事項
 - コマンド実行中に外部コマンドや `eval` を用いる場合はセキュリティに注意してください。

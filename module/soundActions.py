@@ -5,13 +5,13 @@ import pyopenjtalk
 import numpy as np
 from scipy.io import wavfile
 import winsound
-from system.paramSetting import getParam, loadParams
+from lib.paramSetting import getParam, loadParams
 import time
-from system.decoratorSetting import *
+from lib.decoratorSetting import *
 
 import re
 
-from system.loggerSetting import getMyLogger
+from lib.loggerSetting import getMyLogger
 
 logger = getMyLogger(__name__)
 

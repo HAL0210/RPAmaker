@@ -1,6 +1,6 @@
 '''特殊な動作をさせるために用意
 '''
-from system.commonDefine import *
+from lib.commonDefine import *
 import subprocess
 
 loadParams('mod\extra.yaml')

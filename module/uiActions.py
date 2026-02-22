@@ -7,11 +7,11 @@ from pywinauto.findwindows import ElementNotFoundError, ElementAmbiguousError
 from pynput import mouse, keyboard
 import traceback
 import threading
-from system.paramSetting import *
+from lib.paramSetting import *
 from pywinauto.application import Application, AppStartError
 from pywinauto.findwindows import ElementNotFoundError
 
-from system.commonDefine import *
+from lib.commonDefine import *
 
 # exe化で必要
 import comtypes.stream

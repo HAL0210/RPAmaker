@@ -1,9 +1,9 @@
 import sys
 import os
 import traceback
-from system.paramSetting import setParam, getParam, loadParams
-from system.loggerSetting import setLogger
-from system.decoratorSetting import instrumented
+from lib.paramSetting import setParam, getParam, loadParams
+from lib.loggerSetting import setLogger
+from lib.decoratorSetting import instrumented
 
 default_init_file_path = 'init.yaml'
 logger = None
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         for arg in sys.argv[2:]:
             if '=' in arg:
-                from system.customFunction import patternMatchSplit
+                from lib.customFunction import patternMatchSplit
                 key, value = patternMatchSplit('=', arg)
                 setParam(key, value)
             else:
@@ -121,5 +121,5 @@ if __name__ == '__main__':
         input('Enter...')
     finally:
         # 終了時呼び出し実行
-        from system.shutdownSetting import run_shutdown_hooks
+        from lib.shutdownSetting import run_shutdown_hooks
         run_shutdown_hooks()
