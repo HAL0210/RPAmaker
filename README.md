@@ -1,93 +1,60 @@
-# commandRPA
+# RPAmaker
 
-nuitka --standalone --playwright-include-browser=all --windows-icon-from-ico="gear128.ico" CommandRPA.py
+軽量なテキストベースRPAランタイム。テキストで記述したコマンドを読み込み、モジュール単位で実装されたアクションを順に実行します。
 
-## Getting started
+## 概要
+- コマンドファイル（テキスト）でワークフローを定義し、`module/` 内のアクションで実行します。
+- 設定は YAML で管理し、ログ出力やデコレータで実行制御（リトライ・計測等）を行います。
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 特長
+- モジュール化されたアクション群（UI、Playwright、Keyboard、Sound など）
+- YAML ベースのパラメータ管理（`param/`）
+- 実行ログ・リトライ・計測を行うデコレータを備える
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## 必要条件
+- Python 3.8 以上（プロジェクトで使用している環境に合わせてください）
+- 必要な追加パッケージは各モジュールに依存します（例: Playwright を使う場合は `playwright` が必要）
 
-## Add your files
+## クイックスタート
+1. リポジトリをクローンまたは取得
+2. 仮想環境を作成して依存をインストール（モジュールに応じて）
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt   # 必要なら作成してください
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/halbal/commandRPA.git
-git branch -M main
-git push -uf origin main
+
+3. `param/` と `init.yaml` を確認して実行環境を整える
+4. コマンドファイルを用意して実行
+
+```powershell
+python CommandRPA.py path\to\commands.txt
 ```
 
-## Integrate with your tools
+## 主要ファイル
+- `CommandRPA.py` — エントリポイント、初期化と実行管理
+- `readLines.py` — コマンドファイルの読み取りと行実行
+- `moduleList.py` — 利用可能モジュールの管理
+- `module/` — 各種アクション実装（`playwrightActions.py`, `uiActions.py`, `keyboardActions.py` など）
+- `param/` — パラメータ定義（`mod/`、`sys/` 等のサブフォルダあり）
+- `system/` — ロガー、デコレータ、シャットダウン処理などの共通機能
 
-- [ ] [Set up project integrations](https://gitlab.com/halbal/commandRPA/-/settings/integrations)
+## 設定（ポイント）
+- 初期設定は `init.yaml`。
+- モジュール別設定は `param/mod/*.yaml` に配置。
+- 機密情報は YAML に直接書かず環境変数やシークレットストアを利用してください。
 
-## Collaborate with your team
+## 開発・拡張方法
+- 新しいアクションを追加するには `module/` にファイルを作成し、`moduleList.py` に登録してください。
+- ログや実行計測は `system/decoratorSetting.py` のデコレータを利用してください。
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## 注意事項
+- コマンド実行中に外部コマンドや `eval` を用いる場合はセキュリティに注意してください。
+- 自動操作を行うため環境ごとの差異（画面サイズ、フォーカス等）に注意して設定してください。
 
-## Test and Deploy
+## 貢献
+- Issue や Pull Request を歓迎します。コーディング規約やテストを整えてから送ってください。
 
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## ライセンス
+- このリポジトリに明示的なライセンスがない場合は、利用前に作成者に確認してください。
