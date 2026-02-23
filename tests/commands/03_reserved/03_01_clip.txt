@@ -1,0 +1,4 @@
+# 03_reserved / 01_clip
+print: ===== 03_01_clip start =====
+print: clip=${clip}
+print: ===== 03_01_clip end =====

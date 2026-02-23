@@ -1,0 +1,6 @@
+# 02_params / 02_input_default
+print: ===== 02_02_input_default start =====
+setBool: AUTO_DEFAULT_INPUT=True
+set: default=from-default
+print: input=${input}
+print: ===== 02_02_input_default end =====

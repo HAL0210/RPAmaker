@@ -1,0 +1,13 @@
+# 01_core / 01_basic
+print: ===== 01_01_basic start =====
+set: user=hal02
+print: user=${user}
+
+project=RPAmaker
+print: project=${project}
+
+bool: ${project}=RPAmaker
+print: bool-return=${return}
+
+wait: 0.2
+print: ===== 01_01_basic end =====

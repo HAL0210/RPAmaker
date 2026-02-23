@@ -1,0 +1,6 @@
+# 01_core / 03_read_child
+print: [01_03_child] start
+print: [01_03_child] caller=${caller}
+set: child_result=ok
+print: [01_03_child] child_result=${child_result}
+print: [01_03_child] end

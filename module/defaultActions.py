@@ -438,10 +438,10 @@ def helpAction(search=None):
             print('module_priorityに登録されていないモジュールの場合はmodule.command で呼び出してください')
 
         else:
-            from readLines import selectAction
+            from readLines import resolveCommand
             try:
-                action = selectAction(search)
-                doc = action.__doc__
+                command_func = resolveCommand(search)
+                doc = command_func.__doc__
                 print(doc)
             except KeyError:
                 logger.error(f'helpコマンドで{search}がヒットしませんでした。')

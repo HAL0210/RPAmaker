@@ -4,31 +4,33 @@ import re
 from lib.paramSetting import getParam, setParam
 from module.flowActions import flow_action_list
 from lib.decoratorSetting import *
-from lib.customException import *
 from lib.commonDefine import *
-from lib.loggerSetting import logger
+from lib.loggerSetting import getMyLogger
+
+# モジュールロガーを取得
+logger = getMyLogger(__name__)
 
 from moduleList import module_list, getModuleActions
 
 @instrumented()
-def selectAction(action):
+def resolveCommand(command_name):
     
     pattern = r'^(.+?)\.(.*)$'
-    match = re.search(pattern, action)
+    match = re.search(pattern, command_name)
     if match:
         module = match.group(1).strip()
-        action = match.group(2).strip()
+        command_name = match.group(2).strip()
         module_actions = getModuleActions(module)
-        if action in module_actions:
-            return module_actions[action]
+        if command_name in module_actions:
+            return module_actions[command_name]
         else:
             raise KeyError('コマンドが見つかりません')
     else:
         module_priority = getParam('module_priority', 'd').split(',')
         for module in module_priority:
             module_actions = getModuleActions(module)
-            if action  in module_actions:
-                return module_actions[action]
+            if command_name  in module_actions:
+                return module_actions[command_name]
         else:
             raise KeyError('コマンドが見つかりません')
 
@@ -66,7 +68,7 @@ def executeLine(action, args):
     try:
         # アクション関数を取得
         if action in flow_action_list:
-            actionFunc = flow_action_list[action]
+            command_func = flow_action_list[action]
         else:
             # スキップ対象の通常アクションは実行しない
             flow_stack = getParam('flow_stack', [])
@@ -74,15 +76,15 @@ def executeLine(action, args):
             if is_skipping:
                 return
             if '=' in action:
-                actionFunc = selectAction('set')
+                command_func = resolveCommand('set')
                 args = action
             else:
-                actionFunc = selectAction(action)
+                command_func = resolveCommand(action)
                 
         if args:
-            result = actionFunc(args)
+            result = command_func(args)
         else:
-            result = actionFunc()
+            result = command_func()
 
         if result is not None:
             setParam('return', result, disable_cast=True)

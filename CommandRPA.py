@@ -6,7 +6,6 @@ from lib.loggerSetting import setLogger
 from lib.decoratorSetting import instrumented
 
 default_init_file_path = 'init.yaml'
-logger = None
 
 def init(init_file_path):
     """指定された文字列をコンソールに出力する
@@ -17,7 +16,6 @@ def init(init_file_path):
     Raises:
         FileNotFoundError: ファイルが存在しない場合
     """
-    global logger
     
     # 初期パラメータの読込
     try:
@@ -80,6 +78,7 @@ def commandRPA(version):
             readFile(target_file)
         except:
             if getParam('auto_interactive_when_read_line_except', False):
+                from readLines import interactiveMode
                 interactiveMode()
             else:
                 raise
@@ -95,8 +94,9 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         for arg in sys.argv[2:]:
             if '=' in arg:
-                from lib.customFunction import patternMatchSplit
-                key, value = patternMatchSplit('=', arg)
+                key, value = arg.split('=', 1)
+                key = key.strip()
+                value = value.strip()
                 setParam(key, value)
             else:
                 raise Exception(f'第二引数以降はkey=valueの形式にしてください')

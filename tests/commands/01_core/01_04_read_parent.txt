@@ -1,0 +1,6 @@
+# 01_core / 04_read_parent
+print: ===== 01_04_read_parent start =====
+set: caller=parent-default
+read: tests/commands/01_core/01_03_read_child.txt, caller=from-parent
+print: [01_04_parent] after child, child_result=${child_result}
+print: ===== 01_04_read_parent end =====

@@ -1,0 +1,17 @@
+# 01_core / 02_flow
+print: ===== 01_02_flow start =====
+set: mode=test
+
+if: ${mode}=prod
+print: production mode
+elif: ${mode}=test
+print: test mode selected
+else
+print: unknown mode
+fi
+
+if: ${mode}!=prod
+print: mode is not prod
+fi
+
+print: ===== 01_02_flow end =====
