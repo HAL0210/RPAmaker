@@ -16,6 +16,7 @@ class Test0100CommandCases(unittest.TestCase):
             capture_output=True,
             text=True,
             encoding="utf-8",
+            errors="replace",
             timeout=30,
         )
 
@@ -50,6 +51,48 @@ class Test0100CommandCases(unittest.TestCase):
         self.assertIn("[01_03_child] child_result=ok", output)
         self.assertIn("[01_04_parent] after child, child_result=ok", output)
         self.assertIn("===== 01_04_read_parent end =====", output)
+
+    def test_01_05_core_flow_param_branch(self):
+        output = self.run_command_file(
+            "tests/commands/01_core/01_05_flow_param_branch.txt",
+            "env=prod",
+            "release=canary",
+            "region=jp",
+            "tier=silver",
+        )
+        self.assertIn("===== 01_05_flow_param_branch start =====", output)
+        self.assertIn("env=prod", output)
+        self.assertIn("release=canary", output)
+        self.assertIn("region=jp,tier=silver", output)
+        self.assertIn("prod-path", output)
+        self.assertIn("===== 01_05_flow_param_branch end =====", output)
+
+        self.assertNotIn("release=stable", output)
+        self.assertNotIn("non-prod-path", output)
+
+    def test_01_06_core_flow_deep_nesting(self):
+        output = self.run_command_file(
+            "tests/commands/01_core/01_06_flow_deep_nesting.txt",
+            "level1=go",
+            "level2=go",
+            "level3=go",
+            "level4=stop",
+            "gate=open",
+            "phase=2",
+            "subphase=b",
+        )
+        self.assertIn("===== 01_06_flow_deep_nesting start =====", output)
+        self.assertIn("L1=go", output)
+        self.assertIn("L2=go", output)
+        self.assertIn("L3=go", output)
+        self.assertIn("L4=stop", output)
+        self.assertIn("gate=open", output)
+        self.assertIn("phase=2", output)
+        self.assertIn("subphase=b", output)
+        self.assertIn("===== 01_06_flow_deep_nesting end =====", output)
+
+        self.assertNotIn("L1=stop", output)
+        self.assertNotIn("gate=closed", output)
 
     def test_02_01_params_cli_args(self):
         output = self.run_command_file(

@@ -1,0 +1,39 @@
+# 01_core / 05_flow_param_branch
+print: ===== 01_05_flow_param_branch start =====
+
+if: ${env}=prod
+print: env=prod
+if: ${release}=stable
+print: release=stable
+elif: ${release}=canary
+print: release=canary
+else
+print: release=other
+fi
+elif: ${env}=stg
+print: env=stg
+else
+print: env=other
+fi
+
+if: ${region}=jp
+if: ${tier}=gold
+print: region=jp,tier=gold
+elif: ${tier}=silver
+print: region=jp,tier=silver
+else
+print: region=jp,tier=other
+fi
+elif: ${region}=us
+print: region=us
+else
+print: region=other
+fi
+
+if: ${env}!=prod
+print: non-prod-path
+else
+print: prod-path
+fi
+
+print: ===== 01_05_flow_param_branch end =====

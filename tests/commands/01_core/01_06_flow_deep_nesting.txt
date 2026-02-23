@@ -1,0 +1,43 @@
+# 01_core / 06_flow_deep_nesting
+print: ===== 01_06_flow_deep_nesting start =====
+
+if: ${level1}=go
+print: L1=go
+if: ${level2}=go
+print: L2=go
+if: ${level3}=go
+print: L3=go
+if: ${level4}=go
+print: L4=go
+else
+print: L4=stop
+fi
+else
+print: L3=stop
+fi
+else
+print: L2=stop
+fi
+else
+print: L1=stop
+fi
+
+if: ${gate}=open
+print: gate=open
+if: ${phase}=1
+print: phase=1
+elif: ${phase}=2
+print: phase=2
+if: ${subphase}=b
+print: subphase=b
+else
+print: subphase=other
+fi
+else
+print: phase=other
+fi
+else
+print: gate=closed
+fi
+
+print: ===== 01_06_flow_deep_nesting end =====
